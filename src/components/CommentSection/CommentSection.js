@@ -6,17 +6,29 @@ import InputForm from "../PostContainer/InputForm";
 
 class CommentSection extends React.Component {
   state = {
-    comments: this.props.comments,
+    comments: JSON.parse(localStorage.getItem("posts"))[this.props.index]
+      .comments,
     likes: this.props.likes,
     isLiked: false
   };
 
   // I did not use index since I render a different component for every post, thus they should not overlay, the value I take from the value of the input in the InputForm component
-  addNewComment = (e, value) => {
+  addNewComment = (e, value, index) => {
     e.preventDefault();
-    this.setState(prevState => ({
-      comments: [...prevState.comments, { username: "Vlad", text: value }]
-    }));
+    this.setState(
+      prevState => ({
+        comments: [...prevState.comments, { username: "Vlad", text: value }]
+      }),
+      () => {
+        let newLocal = JSON.parse(localStorage.getItem("posts"));
+        console.log(newLocal[index]);
+        newLocal[index].comments = [
+          ...newLocal[index].comments,
+          { username: "Vlad", text: value }
+        ];
+        localStorage.setItem("posts", JSON.stringify(newLocal));
+      }
+    );
   };
 
   // checks if the post is already liked, if so it increments by one, else decrements
@@ -37,6 +49,7 @@ class CommentSection extends React.Component {
   };
 
   render() {
+    console.log(this.props.index);
     return (
       <div className="comments">
         <div className="comments-icons">
@@ -56,7 +69,10 @@ class CommentSection extends React.Component {
             "dddd MMM YY"
           )}
         </p>
-        <InputForm addNewComment={this.addNewComment} />
+        <InputForm
+          index={this.props.index}
+          addNewComment={this.addNewComment}
+        />
       </div>
     );
   }
@@ -70,7 +86,8 @@ CommentSection.propTypes = {
     })
   ),
   likes: PropTypes.number,
-  timestamp: PropTypes.string
+  timestamp: PropTypes.string,
+  index: PropTypes.number
 };
 
 export default CommentSection;

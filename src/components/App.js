@@ -25,8 +25,8 @@ class App extends Component {
       content = (
         <div className="container">
           <SearchBar onFilterSearch={this.onFilterSearch} />
-          {this.state.data.map(data => (
-            <PostContainer key={data.username} data={data} />
+          {this.state.data.map((data, i) => (
+            <PostContainer index={i} key={data.username} data={data} />
           ))}
         </div>
       );
@@ -41,8 +41,8 @@ class App extends Component {
       content = (
         <div className="container">
           <SearchBar onFilterSearch={this.onFilterSearch} />
-          {this.state.displayData.map(data => (
-            <PostContainer key={data.username} data={data} />
+          {this.state.displayData.map((data, i) => (
+            <PostContainer index={i} key={data.username} data={data} />
           ))}
         </div>
       );

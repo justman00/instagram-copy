@@ -9,6 +9,7 @@ const PostContainer = props => {
       <UserInfo img={props.data.thumbnailUrl} username={props.data.username} />
       <img src={props.data.imageUrl} alt="post" className="post-image" />
       <CommentSection
+        index={props.index}
         timestamp={props.data.timestamp}
         likes={props.data.likes}
         comments={props.data.comments}
@@ -25,7 +26,8 @@ PostContainer.propTypes = {
     likes: PropTypes.number,
     timestamp: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object)
-  })
+  }),
+  index: PropTypes.number
 };
 
 export default PostContainer;

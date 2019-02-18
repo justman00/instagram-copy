@@ -10,10 +10,11 @@ class InputForm extends React.Component {
   };
 
   render() {
+    console.log(this.props.index);
     return (
       <form
         onSubmit={e => {
-          this.props.addNewComment(e, this.state.input);
+          this.props.addNewComment(e, this.state.input, this.props.index);
           this.setState({ input: "" });
         }}
         className="input-form"
@@ -32,7 +33,8 @@ class InputForm extends React.Component {
 }
 
 InputForm.propTypes = {
-  addNewComment: PropTypes.func.isRequired
+  addNewComment: PropTypes.func.isRequired,
+  index: PropTypes.number
 };
 
 export default InputForm;
