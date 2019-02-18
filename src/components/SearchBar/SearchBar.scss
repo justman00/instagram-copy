@@ -36,15 +36,19 @@
     }
   }
 
-  input {
-    padding: 5px;
-    font-size: 1.6rem;
-    outline: none;
+  form {
     width: 30%;
 
-    &::placeholder {
-      opacity: 0.5;
-      text-align: center;
+    input {
+      padding: 5px;
+      font-size: 1.6rem;
+      outline: none;
+      width: 100%;
+
+      &::placeholder {
+        opacity: 0.5;
+        text-align: center;
+      }
     }
   }
 }

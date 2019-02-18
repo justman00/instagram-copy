@@ -1,7 +1,9 @@
 import React from "react";
 import "./SearchBar.scss";
+import SearchInput from "./SearchInput";
+import PropTypes from "prop-types";
 
-const SearchBar = () => {
+const SearchBar = props => {
   return (
     <header className="header">
       <div className="instagram">
@@ -11,7 +13,7 @@ const SearchBar = () => {
           alt="instagram logo"
         />
       </div>
-      <input type="text" className="search" placeholder="Search" />
+      <SearchInput onFilterSearch={props.onFilterSearch} />
       <div className="icons">
         <i className="far fa-compass" />
         <i className="far fa-heart" />
@@ -19,6 +21,10 @@ const SearchBar = () => {
       </div>
     </header>
   );
+};
+
+SearchBar.propTypes = {
+  onFilterSearch: PropTypes.func
 };
 
 export default SearchBar;

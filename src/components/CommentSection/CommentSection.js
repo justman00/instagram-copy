@@ -11,6 +11,7 @@ class CommentSection extends React.Component {
     isLiked: false
   };
 
+  // I did not use index since I render a different component for every post, thus they should not overlay, the value I take from the value of the input in the InputForm component
   addNewComment = (e, value) => {
     e.preventDefault();
     this.setState(prevState => ({
@@ -18,6 +19,7 @@ class CommentSection extends React.Component {
     }));
   };
 
+  // checks if the post is already liked, if so it increments by one, else decrements
   addLike = () => {
     if (!this.state.isLiked) {
       this.setState({
