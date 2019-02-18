@@ -2,6 +2,7 @@ import React from "react";
 import CommentSection from "../CommentSection/CommentSection";
 import PropTypes from "prop-types";
 import UserInfo from "./UserInfo";
+import InputForm from "./InputForm";
 
 const PostContainer = props => {
   return (
@@ -13,6 +14,7 @@ const PostContainer = props => {
         likes={props.data.likes}
         comments={props.data.comments}
       />
+      <InputForm />
     </>
   );
 };

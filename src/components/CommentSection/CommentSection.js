@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Comment from "./Comment";
+import moment from "moment";
 
 const CommentSection = props => {
   return (
@@ -13,7 +14,9 @@ const CommentSection = props => {
       {props.comments.map((comment, i) => (
         <Comment key={i} comment={comment} />
       ))}
-      <p className="timestamp">{props.timestamp}</p>
+      <p className="timestamp">
+        {moment(props.timestamp, "MMMM Do YYYY, h:mm:ss").format("dddd MMM YY")}
+      </p>
     </div>
   );
 };
