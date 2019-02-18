@@ -5,7 +5,11 @@ import moment from "moment";
 import InputForm from "../PostContainer/InputForm";
 
 class CommentSection extends React.Component {
-  state = { comments: this.props.comments };
+  state = {
+    comments: this.props.comments,
+    likes: this.props.likes,
+    isLiked: false
+  };
 
   addNewComment = (e, value) => {
     e.preventDefault();
@@ -14,14 +18,34 @@ class CommentSection extends React.Component {
     }));
   };
 
+  addLike = () => {
+    if (!this.state.isLiked) {
+      this.setState({
+        ...this.state,
+        likes: ++this.state.likes,
+        isLiked: !this.state.isLiked
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        likes: --this.state.likes,
+        isLiked: !this.state.isLiked
+      });
+    }
+  };
+
   render() {
     return (
       <div className="comments">
         <div className="comments-icons">
-          <i className="far fa-heart" />
+          {!this.state.isLiked ? (
+            <i onClick={() => this.addLike()} className="far fa-heart" />
+          ) : (
+            <i onClick={() => this.addLike()} className="fas fa-heart like" />
+          )}
           <i className="far fa-comment" />
         </div>
-        <p className="likes-num">{this.props.likes} likes</p>
+        <p className="likes-num">{this.state.likes} likes</p>
         {this.state.comments.map((comment, i) => (
           <Comment key={i} comment={comment} />
         ))}
