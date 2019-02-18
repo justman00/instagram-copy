@@ -5,10 +5,15 @@ import UserInfo from "./UserInfo";
 
 const PostContainer = props => {
   return (
-    <div>
+    <>
       <UserInfo img={props.data.thumbnailUrl} username={props.data.username} />
-      <CommentSection comments={props.data.comments} />
-    </div>
+      <img src={props.data.imageUrl} alt="post" className="post-image" />
+      <CommentSection
+        timestamp={props.data.timestamp}
+        likes={props.data.likes}
+        comments={props.data.comments}
+      />
+    </>
   );
 };
 

@@ -1,0 +1,43 @@
+.comments {
+  width: 98%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+
+  &-icons {
+    width: 100%;
+    margin: 1rem 0;
+
+    i {
+      font-size: 3rem;
+      margin-right: 3rem;
+      opacity: 0.5;
+    }
+  }
+
+  .likes-num {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+
+  .timestamp {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.4rem;
+    opacity: 0.5;
+  }
+
+  .comment {
+    display: flex;
+    align-items: baseline;
+    font-size: 1.6rem;
+    margin: 0.7rem 0;
+
+    h3 {
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+  }
+}

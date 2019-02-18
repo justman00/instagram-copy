@@ -1,6 +1,6 @@
 .user-info {
   width: 95%;
-  margin: 15px auto;
+  margin: 55px auto 15px;
   display: flex;
   align-items: center;
 
@@ -15,4 +15,9 @@
     font-size: 1.8rem;
     font-family: sans-serif;
   }
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
 }

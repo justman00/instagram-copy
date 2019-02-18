@@ -4,7 +4,7 @@ import "./PostContainer.scss";
 const UserInfo = props => {
   return (
     <header className="user-info">
-      <img src={props.img} alt="user thumbnail image" />
+      <img src={props.img} alt="user thumbnail" />
       <h4>{props.username}</h4>
     </header>
   );
