@@ -1,11 +1,12 @@
 import React from "react";
 import CommentSection from "../CommentSection/CommentSection";
 import PropTypes from "prop-types";
+import UserInfo from "./UserInfo";
 
 const PostContainer = props => {
   return (
     <div>
-      <h2>PostContainer</h2>
+      <UserInfo img={props.data.thumbnailUrl} username={props.data.username} />
       <CommentSection comments={props.data.comments} />
     </div>
   );
