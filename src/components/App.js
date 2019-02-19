@@ -6,13 +6,15 @@ import Fuse from "fuse.js";
 
 import "./App.scss";
 
+// localStorage.clear();
+
 class App extends Component {
   state = { data: [], displayData: undefined };
 
   componentDidMount() {
     this.setState({ data: dummyData });
     if (!localStorage.getItem("posts")) {
-      localStorage.setItem("posts", JSON.stringify(this.state.data));
+      localStorage.setItem("posts", JSON.stringify(dummyData));
     }
   }
 
