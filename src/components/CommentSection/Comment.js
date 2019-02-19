@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 const Comment = props => {
   return (
     <div className="comment">
-      <h3>{props.comment.username}</h3> <p>{props.comment.text}</p>{" "}
+      <div>
+        <h3>{props.comment.username}</h3> <p>{props.comment.text}</p>
+      </div>
       <button onClick={() => props.deleteComment(props.index, props.comment)}>
         Delete
       </button>

@@ -11,6 +11,9 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ data: dummyData });
+    if (!localStorage.getItem("posts")) {
+      localStorage.setItem("posts", JSON.stringify(this.state.data));
+    }
   }
 
   onFilterSearch = (e, term) => {
