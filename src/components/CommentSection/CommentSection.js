@@ -6,8 +6,7 @@ import InputForm from "../PostContainer/InputForm";
 
 class CommentSection extends React.Component {
   state = {
-    comments: JSON.parse(localStorage.getItem("posts"))[this.props.index]
-      .comments,
+    comments: this.props.comments,
     likes: this.props.likes,
     isLiked: false
   };

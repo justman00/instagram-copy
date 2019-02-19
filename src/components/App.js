@@ -12,9 +12,12 @@ class App extends Component {
   state = { data: [], displayData: undefined };
 
   componentDidMount() {
-    this.setState({ data: dummyData });
+    // if local storage does not have a posts array, we will initiate it and set our state to the data coming from the local storage
     if (!localStorage.getItem("posts")) {
       localStorage.setItem("posts", JSON.stringify(dummyData));
+      this.setState({ data: JSON.parse(localStorage.getItem("posts")) });
+    } else {
+      this.setState({ data: JSON.parse(localStorage.getItem("posts")) });
     }
   }
 
