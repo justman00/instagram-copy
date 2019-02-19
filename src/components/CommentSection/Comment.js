@@ -8,9 +8,13 @@ const Comment = props => {
       <div>
         <h3>{props.comment.username}</h3> <p>{props.comment.text}</p>
       </div>
-      <button onClick={() => props.deleteComment(props.index, props.comment)}>
-        Delete
-      </button>
+      {props.comment.username === localStorage.getItem("username") ? (
+        <button onClick={() => props.deleteComment(props.index, props.comment)}>
+          Delete
+        </button>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };

@@ -16,14 +16,17 @@ class CommentSection extends React.Component {
     e.preventDefault();
     this.setState(
       prevState => ({
-        comments: [...prevState.comments, { username: "Vlad", text: value }]
+        comments: [
+          ...prevState.comments,
+          { username: localStorage.getItem("username"), text: value }
+        ]
       }),
       () => {
         let newLocal = JSON.parse(localStorage.getItem("posts"));
         console.log(newLocal[index]);
         newLocal[index].comments = [
           ...newLocal[index].comments,
-          { username: "Vlad", text: value }
+          { username: localStorage.getItem("username"), text: value }
         ];
         localStorage.setItem("posts", JSON.stringify(newLocal));
       }

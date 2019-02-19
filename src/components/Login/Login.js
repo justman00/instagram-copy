@@ -1,4 +1,5 @@
 import React from "react";
+import "./Login.scss";
 
 class Login extends React.Component {
   state = {
@@ -11,19 +12,27 @@ class Login extends React.Component {
   };
 
   onLogIn = username => {
-    if (!localStorage.getItem(username)) {
-      localStorage.setItem("username", username);
+    if (!localStorage.getItem("username")) {
+      if (username !== "") {
+        localStorage.setItem("username", username);
+      }
     }
   };
 
   render() {
     return (
-      <form onSubmit={() => this.onLogIn(this.state.username)}>
+      <form
+        className="form-container"
+        onSubmit={() => this.onLogIn(this.state.username)}
+      >
+        <h1>Login</h1>
+        <label>Username</label>
         <input
           type="text"
           name="username"
           onChange={e => this.handleChange(e)}
         />
+        <label>Password</label>
         <input
           type="password"
           name="password"
