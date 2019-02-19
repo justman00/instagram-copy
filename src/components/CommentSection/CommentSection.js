@@ -48,8 +48,16 @@ class CommentSection extends React.Component {
     }
   };
 
+  deleteComment = (index, comment) => {
+    const newArr = this.state.comments.filter(com => !Object.is(com, comment));
+    this.setState({ comments: newArr });
+    let newLocal = JSON.parse(localStorage.getItem("posts"));
+    newLocal[index].comments = newArr;
+    localStorage.setItem("posts", JSON.stringify(newLocal));
+  };
+
   render() {
-    console.log(this.props.index);
+    // console.log(this.props.index);
     return (
       <div className="comments">
         <div className="comments-icons">
@@ -62,7 +70,12 @@ class CommentSection extends React.Component {
         </div>
         <p className="likes-num">{this.state.likes} likes</p>
         {this.state.comments.map((comment, i) => (
-          <Comment key={i} comment={comment} />
+          <Comment
+            index={this.props.index}
+            deleteComment={this.deleteComment}
+            key={i}
+            comment={comment}
+          />
         ))}
         <p className="timestamp">
           {moment(this.props.timestamp, "MMMM Do YYYY, h:mm:ss").format(
