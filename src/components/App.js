@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import dummyData from "./dummy-data";
 import PostContainer from "./PostContainer/PostContainer";
 import SearchBar from "./SearchBar/SearchBar";
+import Fuse from "fuse.js";
 
 import "./App.scss";
 
@@ -14,8 +15,23 @@ class App extends Component {
 
   onFilterSearch = (e, term) => {
     e.preventDefault();
-    const newArr = this.state.data.filter(el => el.username.includes(term));
-    this.setState({ displayData: newArr });
+    const options = {
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: ["username"]
+    };
+    const fuse = new Fuse(this.state.data, options);
+    // const newArr = this.state.data.filter(el => el.username.includes(term));
+    const result = fuse.search(term);
+    if (term !== "") {
+      this.setState({ displayData: result });
+    } else {
+      this.setState({ displayData: this.state.data });
+    }
   };
 
   render() {
