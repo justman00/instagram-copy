@@ -10,17 +10,15 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onLogIn = (username, password) => {
+  onLogIn = username => {
     if (!localStorage.getItem(username)) {
-      localStorage.setItem(username, password);
+      localStorage.setItem("username", username);
     }
   };
 
   render() {
     return (
-      <form
-        onSubmit={() => this.onLogIn(this.state.username, this.state.password)}
-      >
+      <form onSubmit={() => this.onLogIn(this.state.username)}>
         <input
           type="text"
           name="username"
