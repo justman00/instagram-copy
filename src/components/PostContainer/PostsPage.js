@@ -3,6 +3,7 @@ import dummyData from "../dummy-data";
 import PostContainer from "./PostContainer";
 import SearchBar from "../SearchBar/SearchBar";
 import Fuse from "fuse.js";
+import Login from "../Login/Login";
 
 import "../App.scss";
 
@@ -52,6 +53,7 @@ class PostsPage extends Component {
     if (this.state.displayData === undefined) {
       content = (
         <div className="container">
+          <Login />
           <SearchBar onFilterSearch={this.onFilterSearch} />
           {this.state.data.map((data, i) => (
             <PostContainer index={i} key={data.username} data={data} />
