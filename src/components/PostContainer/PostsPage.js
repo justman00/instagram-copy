@@ -22,7 +22,12 @@ const Error = styled.h2`
 
 // PostsPage
 class PostsPage extends Component {
-  state = { data: [], displayData: undefined, currentPost: null };
+  state = {
+    data: [],
+    displayData: undefined,
+    currentPost: null,
+    currentIndex: null
+  };
 
   componentDidMount() {
     // if local storage does not have a posts array, we will initiate it and set our state to the data coming from the local storage
@@ -60,7 +65,7 @@ class PostsPage extends Component {
   };
 
   selectPost = index => {
-    this.setState({ currentPost: this.state.data[index] });
+    this.setState({ currentPost: this.state.data[index], currentIndex: index });
   };
 
   render() {
@@ -108,7 +113,12 @@ class PostsPage extends Component {
 
         <Route
           path="/single-post"
-          render={() => <SinglePost post={this.state.currentPost} />}
+          render={() => (
+            <SinglePost
+              currentIndex={this.state.currentIndex}
+              post={this.state.currentPost}
+            />
+          )}
         />
       </>
     );
