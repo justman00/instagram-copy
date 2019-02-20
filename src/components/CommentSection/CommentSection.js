@@ -3,7 +3,47 @@ import PropTypes from "prop-types";
 import Comment from "./Comment";
 import moment from "moment";
 import InputForm from "../PostContainer/InputForm";
+import styled, { css } from "styled-components";
 
+// styled components
+const Comments = styled.section`
+  width: 98%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Icons = styled.div`
+  width: 100%;
+  margin: 1rem 0;
+`;
+
+const Icon = styled.i`
+  font-size: 3rem;
+  margin-right: 3rem;
+  opacity: 0.5;
+
+  ${props =>
+    props.liked &&
+    css`
+      color: red;
+      transition: all 0.5s;
+    `}
+`;
+
+const NumOrTime = styled.p`
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 1.8rem;
+  ${props =>
+    props.time &&
+    css`
+      font-size: 1.4rem;
+      opacity: 0.5;
+    `}
+`;
+
+// normal class
 class CommentSection extends React.Component {
   state = {
     comments: this.props.comments,
@@ -61,16 +101,20 @@ class CommentSection extends React.Component {
   render() {
     // console.log(this.props.index);
     return (
-      <div className="comments">
-        <div className="comments-icons">
+      <Comments>
+        <Icons className="comments-icons">
           {!this.state.isLiked ? (
-            <i onClick={() => this.addLike()} className="far fa-heart" />
+            <Icon onClick={() => this.addLike()} className="far fa-heart" />
           ) : (
-            <i onClick={() => this.addLike()} className="fas fa-heart like" />
+            <Icon
+              onClick={() => this.addLike()}
+              className="fas fa-heart"
+              liked
+            />
           )}
-          <i className="far fa-comment" />
-        </div>
-        <p className="likes-num">{this.state.likes} likes</p>
+          <Icon className="far fa-comment" />
+        </Icons>
+        <NumOrTime>{this.state.likes} likes</NumOrTime>
         {this.state.comments.map((comment, i) => (
           <Comment
             index={this.props.index}
@@ -79,16 +123,16 @@ class CommentSection extends React.Component {
             comment={comment}
           />
         ))}
-        <p className="timestamp">
+        <NumOrTime time>
           {moment(this.props.timestamp, "MMMM Do YYYY, h:mm:ss").format(
             "dddd MMM YY"
           )}
-        </p>
+        </NumOrTime>
         <InputForm
           index={this.props.index}
           addNewComment={this.addNewComment}
         />
-      </div>
+      </Comments>
     );
   }
 }

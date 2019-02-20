@@ -2,12 +2,18 @@ import React from "react";
 import CommentSection from "../CommentSection/CommentSection";
 import PropTypes from "prop-types";
 import UserInfo from "./UserInfo";
+import styled from "styled-components";
+
+const Img = styled.img`
+  width: 100%;
+  height: auto;
+`;
 
 const PostContainer = props => {
   return (
     <>
       <UserInfo img={props.data.thumbnailUrl} username={props.data.username} />
-      <img src={props.data.imageUrl} alt="post" className="post-image" />
+      <Img src={props.data.imageUrl} alt="post" />
       <CommentSection
         index={props.index}
         timestamp={props.data.timestamp}

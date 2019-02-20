@@ -1,12 +1,33 @@
 import React from "react";
-import "./PostContainer.scss";
+import styled from "styled-components";
 
+// styled comps
+const Header = styled.header`
+  width: 95%;
+  margin: 55px auto 15px;
+  display: flex;
+  align-items: center;
+`;
+
+const Thumbnail = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 15px;
+`;
+
+const Username = styled.h4`
+  font-size: 1.8rem;
+  font-family: sans-serif;
+`;
+
+// normal Component
 const UserInfo = props => {
   return (
-    <header className="user-info">
-      <img src={props.img} alt="user thumbnail" />
-      <h4>{props.username}</h4>
-    </header>
+    <Header>
+      <Thumbnail src={props.img} alt="user thumbnail" />
+      <Username>{props.username}</Username>
+    </Header>
   );
 };
 
