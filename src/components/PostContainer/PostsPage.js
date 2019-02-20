@@ -3,11 +3,22 @@ import dummyData from "../dummy-data";
 import PostContainer from "./PostContainer";
 import SearchBar from "../SearchBar/SearchBar";
 import Fuse from "fuse.js";
-
-import "../App.scss";
+import styled from "styled-components";
 
 // localStorage.clear();
 
+// styled comps
+const Container = styled.div`
+  max-width: 900px;
+  margin: 5% auto;
+`;
+
+const Error = styled.h2`
+  margin: 10% auto;
+  font-size: 3rem;
+`;
+
+// PostsPage
 class PostsPage extends Component {
   state = { data: [], displayData: undefined };
 
@@ -51,28 +62,28 @@ class PostsPage extends Component {
     let content;
     if (this.state.displayData === undefined) {
       content = (
-        <div className="container">
+        <Container>
           <SearchBar onFilterSearch={this.onFilterSearch} />
           {this.state.data.map((data, i) => (
             <PostContainer index={i} key={data.username} data={data} />
           ))}
-        </div>
+        </Container>
       );
     } else if (this.state.displayData.length === 0) {
       content = (
-        <div className="container">
+        <Container>
           <SearchBar onFilterSearch={this.onFilterSearch} />
-          <h1 className="error">No posts found for the searched term</h1>
-        </div>
+          <Error>No posts found for the searched term</Error>
+        </Container>
       );
     } else {
       content = (
-        <div className="container">
+        <Container>
           <SearchBar onFilterSearch={this.onFilterSearch} />
           {this.state.displayData.map((data, i) => (
             <PostContainer index={i} key={data.username} data={data} />
           ))}
-        </div>
+        </Container>
       );
     }
     return content;
