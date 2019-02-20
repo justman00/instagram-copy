@@ -4,6 +4,8 @@ import PostContainer from "./PostContainer";
 import SearchBar from "../SearchBar/SearchBar";
 import Fuse from "fuse.js";
 import styled from "styled-components";
+import SinglePost from "../SinglePost/SinglePost";
+import { Route } from "react-router-dom";
 
 // localStorage.clear();
 
@@ -20,7 +22,7 @@ const Error = styled.h2`
 
 // PostsPage
 class PostsPage extends Component {
-  state = { data: [], displayData: undefined };
+  state = { data: [], displayData: undefined, currentPost: null };
 
   componentDidMount() {
     // if local storage does not have a posts array, we will initiate it and set our state to the data coming from the local storage
@@ -57,6 +59,10 @@ class PostsPage extends Component {
     }
   };
 
+  selectPost = index => {
+    this.setState({ currentPost: this.state.data[index] });
+  };
+
   render() {
     // it chooses what to render on the screen and checks for some edge cases
     let content;
@@ -65,7 +71,12 @@ class PostsPage extends Component {
         <Container>
           <SearchBar onFilterSearch={this.onFilterSearch} />
           {this.state.data.map((data, i) => (
-            <PostContainer index={i} key={data.username} data={data} />
+            <PostContainer
+              selectPost={this.selectPost}
+              index={i}
+              key={data.username}
+              data={data}
+            />
           ))}
         </Container>
       );
@@ -81,12 +92,26 @@ class PostsPage extends Component {
         <Container>
           <SearchBar onFilterSearch={this.onFilterSearch} />
           {this.state.displayData.map((data, i) => (
-            <PostContainer index={i} key={data.username} data={data} />
+            <PostContainer
+              selectPost={this.selectPost}
+              index={i}
+              key={data.username}
+              data={data}
+            />
           ))}
         </Container>
       );
     }
-    return content;
+    return (
+      <>
+        <Route path="/" exact render={() => content} />
+
+        <Route
+          path="/single-post"
+          render={() => <SinglePost post={this.state.currentPost} />}
+        />
+      </>
+    );
   }
 }
 

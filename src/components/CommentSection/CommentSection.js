@@ -76,17 +76,17 @@ class CommentSection extends React.Component {
   // checks if the post is already liked, if so it increments by one, else decrements
   addLike = () => {
     if (!this.state.isLiked) {
-      this.setState({
-        ...this.state,
-        likes: ++this.state.likes,
-        isLiked: !this.state.isLiked
-      });
+      this.setState(prevState => ({
+        ...prevState.state,
+        likes: ++prevState.likes,
+        isLiked: !prevState.isLiked
+      }));
     } else {
-      this.setState({
-        ...this.state,
-        likes: --this.state.likes,
-        isLiked: !this.state.isLiked
-      });
+      this.setState(prevState => ({
+        ...prevState,
+        likes: --prevState.likes,
+        isLiked: !prevState.isLiked
+      }));
     }
   };
 

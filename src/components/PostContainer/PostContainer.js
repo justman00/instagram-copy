@@ -12,7 +12,12 @@ const Img = styled.img`
 const PostContainer = props => {
   return (
     <>
-      <UserInfo img={props.data.thumbnailUrl} username={props.data.username} />
+      <UserInfo
+        selectPost={props.selectPost}
+        img={props.data.thumbnailUrl}
+        username={props.data.username}
+        index={props.index}
+      />
       <Img src={props.data.imageUrl} alt="post" />
       <CommentSection
         index={props.index}
@@ -33,7 +38,8 @@ PostContainer.propTypes = {
     timestamp: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object)
   }),
-  index: PropTypes.number
+  index: PropTypes.number,
+  selectPost: PropTypes.func
 };
 
 export default PostContainer;
