@@ -1,6 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
+// styled components
+const Form = styled.form`
+  width: 30%;
+
+  @media (max-width: 500px) {
+    width: 25%;
+    margin-left: 3rem;
+  }
+`;
+
+const Input = styled.input`
+  padding: 5px;
+  font-size: 1.6rem;
+  outline: none;
+  width: 100%;
+
+  &::placeholder {
+    opacity: 0.5;
+    text-align: center;
+  }
+`;
+
+// class components
 class SearchInput extends Component {
   state = { input: "" };
 
@@ -10,15 +34,14 @@ class SearchInput extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.props.onFilterSearch(e, this.state.input)}>
-        <input
+      <Form onSubmit={e => this.props.onFilterSearch(e, this.state.input)}>
+        <Input
           type="text"
-          className="search"
           placeholder="Search"
           name="input"
           onChange={e => this.onHandleChange(e)}
         />
-      </form>
+      </Form>
     );
   }
 }
