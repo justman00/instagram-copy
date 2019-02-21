@@ -24,9 +24,7 @@ const Error = styled.h2`
 class PostsPage extends Component {
   state = {
     data: [],
-    displayData: undefined,
-    currentPost: null,
-    currentIndex: null
+    displayData: undefined
   };
 
   componentDidMount() {
@@ -65,7 +63,11 @@ class PostsPage extends Component {
   };
 
   selectPost = index => {
-    this.setState({ currentPost: this.state.data[index], currentIndex: index });
+    localStorage.setItem(
+      "selectedPost",
+      JSON.stringify(this.state.data[index])
+    );
+    localStorage.setItem("currentIndex", index);
   };
 
   render() {
@@ -111,15 +113,7 @@ class PostsPage extends Component {
       <>
         <Route path="/" exact render={() => content} />
 
-        <Route
-          path="/single-post"
-          render={() => (
-            <SinglePost
-              currentIndex={this.state.currentIndex}
-              post={this.state.currentPost}
-            />
-          )}
-        />
+        <Route path="/single-post" render={() => <SinglePost />} />
       </>
     );
   }

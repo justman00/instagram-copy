@@ -10,7 +10,11 @@ const Container = styled.div`
 const SinglePost = props => {
   return (
     <Container>
-      <PostContainer index={props.currentIndex} data={props.post} />;
+      <PostContainer
+        index={localStorage.getItem("currentIndex")}
+        data={JSON.parse(localStorage.getItem("selectedPost"))}
+      />
+      ;
     </Container>
   );
 };
