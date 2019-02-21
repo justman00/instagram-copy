@@ -2,6 +2,7 @@ import React from "react";
 import SearchInput from "./SearchInput";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 //styled components
 const Header = styled.header`
@@ -36,6 +37,15 @@ const Icon = styled.i`
   @media (max-width: 500px) {
     font-size: 2rem;
   }
+
+  &:last-child {
+    cursor: pointer;
+
+    &:hover {
+      border-color: red;
+      background: red;
+    }
+  }
 `;
 
 const Icons = styled.div`
@@ -48,14 +58,21 @@ const Icons = styled.div`
 
 // SearchBar component
 const SearchBar = props => {
+  const logout = () => {
+    localStorage.removeItem("username");
+    window.location.reload(true);
+  };
+
   return (
     <Header>
       <Instagram>
-        <Icon
-          paddingRight="10px"
-          borderRight="1px solid black"
-          className="fab fa-instagram"
-        />
+        <Link to="/">
+          <Icon
+            paddingRight="10px"
+            borderRight="1px solid black"
+            className="fab fa-instagram"
+          />
+        </Link>
         <IgImg
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
           alt="instagram logo"
@@ -65,7 +82,7 @@ const SearchBar = props => {
       <Icons>
         <Icon opacity=".3" className="far fa-compass" />
         <Icon opacity=".3" className="far fa-heart" />
-        <Icon opacity=".3" className="far fa-user" />
+        <Icon onClick={() => logout()} opacity=".3" className="far fa-user" />
       </Icons>
     </Header>
   );

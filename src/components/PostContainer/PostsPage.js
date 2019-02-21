@@ -76,7 +76,6 @@ class PostsPage extends Component {
     if (this.state.displayData === undefined) {
       content = (
         <Container>
-          <SearchBar onFilterSearch={this.onFilterSearch} />
           {this.state.data.map((data, i) => (
             <PostContainer
               selectPost={this.selectPost}
@@ -90,14 +89,14 @@ class PostsPage extends Component {
     } else if (this.state.displayData.length === 0) {
       content = (
         <Container>
-          <SearchBar onFilterSearch={this.onFilterSearch} />
+          {/* <SearchBar onFilterSearch={this.onFilterSearch} /> */}
           <Error>No posts found for the searched term</Error>
         </Container>
       );
     } else {
       content = (
         <Container>
-          <SearchBar onFilterSearch={this.onFilterSearch} />
+          {/* <SearchBar onFilterSearch={this.onFilterSearch} /> */}
           {this.state.displayData.map((data, i) => (
             <PostContainer
               selectPost={this.selectPost}
@@ -111,6 +110,7 @@ class PostsPage extends Component {
     }
     return (
       <>
+        <SearchBar onFilterSearch={this.onFilterSearch} />
         <Route path="/" exact render={() => content} />
 
         <Route path="/single-post" render={() => <SinglePost />} />
