@@ -40,11 +40,6 @@ const Icon = styled.i`
 
   &:last-child {
     cursor: pointer;
-
-    &:hover {
-      border-color: red;
-      background: red;
-    }
   }
 `;
 
