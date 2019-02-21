@@ -51,7 +51,13 @@ class CommentSection extends React.Component {
     isLiked: false
   };
 
-  // I did not use index since I render a different component for every post, thus they should not overlay, the value I take from the value of the input in the InputForm component
+  componentDidMount() {
+    this.setState({
+      comments: JSON.parse(localStorage.getItem("posts"))[this.props.index]
+        .comments
+    });
+  }
+
   addNewComment = (e, value, index) => {
     e.preventDefault();
     this.setState(
@@ -62,6 +68,7 @@ class CommentSection extends React.Component {
         ]
       }),
       () => {
+        // updates the local storage for the given post with its new comments
         let newLocal = JSON.parse(localStorage.getItem("posts"));
         console.log(newLocal[index]);
         newLocal[index].comments = [
