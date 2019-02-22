@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+// random comment for commiting
+
 //styled components
 const Header = styled.header`
   width: 98%;
